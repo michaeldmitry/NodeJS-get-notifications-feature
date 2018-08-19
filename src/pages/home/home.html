@@ -1,14 +1,32 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+  <ion-toolbar>
+    <ion-title>7aweshly Pending Transactions</ion-title>
+   
+  </ion-toolbar>
 </ion-header>
-
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+
+     <ion-list *ngFor="let pending of pendingList ; let i =index" >
+        
+
+        <ion-item-sliding #item>
+          <ion-item>
+              <ion-title class="title">     {{info[i].phone}}</ion-title>
+              Full Name: {{info[i].fname}} {{info[i].lname}}<br>
+              Method: {{pending.method}} <br>  
+              Transaction Number: {{pending.transNumber}} <br> 
+               Value: {{pending.value}} <br> 
+           </ion-item>
+          <ion-item-options side="left">
+            <button ion-button color="danger" (click)="deleteTransaction(i)">Decline</button>
+          </ion-item-options>
+      
+          <ion-item-options side="right">
+            <button class="ApproveButton" ion-button (click)="changePendingStatus(i)">Approve</button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>  
+ 
+
 </ion-content>
