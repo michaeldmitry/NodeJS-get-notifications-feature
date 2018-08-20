@@ -1,32 +1,36 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>7aweshly Pending Transactions</ion-title>
-   
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>7aweshly Pending Transactions</ion-title>
+
+    </ion-toolbar>
 </ion-header>
 <ion-content padding>
 
 
-     <ion-list *ngFor="let pending of pendingList ; let i =index" >
-        
+    <ion-list>
 
-        <ion-item-sliding #item>
-          <ion-item>
-              <ion-title class="title">     {{info[i].phone}}</ion-title>
-              Full Name: {{info[i].fname}} {{info[i].lname}}<br>
-              Method: {{pending.method}} <br>  
-              Transaction Number: {{pending.transNumber}} <br> 
-               Value: {{pending.value}} <br> 
-           </ion-item>
-          <ion-item-options side="left">
-            <button ion-button color="danger" (click)="deleteTransaction(i)">Decline</button>
-          </ion-item-options>
-      
-          <ion-item-options side="right">
-            <button class="ApproveButton" ion-button (click)="changePendingStatus(i)">Approve</button>
-          </ion-item-options>
+
+        <ion-item-sliding #item *ngFor="let pending of pendingList ; let i =index">
+            <ion-item>
+                <ion-label>
+                    <h3 item-start>{{info[i].fname}} {{info[i].lname}}</h3>
+                    <h3 item-end>{{info[i].phone}}</h3>
+                </ion-label>
+                <div item-content>
+                    <p>{{pending.value | number:'1.0-2'}}</p>
+                    <p>{{pending.method}}</p>
+                    <p>{{pending.transNumber}}</p>
+                </div>
+            </ion-item>
+            <ion-item-options side="left">
+                <button ion-button color="danger" (click)="deleteTransaction(i)">Decline</button>
+            </ion-item-options>
+
+            <ion-item-options side="right">
+                <button class="ApproveButton" ion-button (click)="changePendingStatus(i)">Approve</button>
+            </ion-item-options>
         </ion-item-sliding>
-      </ion-list>  
- 
+    </ion-list>
+
 
 </ion-content>
