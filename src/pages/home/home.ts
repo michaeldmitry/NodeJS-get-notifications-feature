@@ -26,7 +26,10 @@ export class HomePage {
   ionViewDidLoad(){
 
    this.fcm.getToken();
+
+   //set a listener to listen to incoming notifications 
   this.fcm.listenToNotifications().pipe(
+    //if the app is opened, the message will be displayed as a toast not a notification
     tap(msg =>{
         const toast=this.toastCtrl.create({
           message:msg.body,
@@ -45,12 +48,12 @@ export class HomePage {
     this.info=[];
     var temp;
 
-    this.firestore.collection('clients').ref.onSnapshot((snapshot ) => {
+    this.firestore.collection('clients').ref.onSnapshot((snapshot ) => {  
      
-      snapshot.forEach((doc) => {
+      snapshot.forEach((doc) => { 
         doc.ref.collection('transactions').where("pending", "==", true).onSnapshot((s) => {
           
-          s.forEach((d) => {
+          s.forEach((d) => {  //loop through each document and see which one has a pending transaction
             
             temp = {
               phone: doc.id,
@@ -59,8 +62,8 @@ export class HomePage {
               id: d.id,
             };
            let c = d.data();
-           this.info.push(temp);
-           this.pendingList.push(c);
+           this.info.push(temp);  //save the user's info who made that transaction
+           this.pendingList.push(c);  //save each transaction details in an array's location
         
 
           });

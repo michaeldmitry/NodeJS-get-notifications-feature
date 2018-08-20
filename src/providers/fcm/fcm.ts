@@ -15,10 +15,10 @@ export class FcmProvider {
   }
 
 
-
+//Each device has a special token, so we get it (using firebase plugin) and save it so that notifications could be sent to that token
   async getToken(){
     let token;
-
+//Check platforms, ios has an additional step unlike android
     if(this.platform.is('ios')){
       token =await this.firebaseNative.getToken();
         const perm= await this.firebaseNative.grantPermission();
@@ -26,26 +26,21 @@ export class FcmProvider {
       }
 
       if(!this.platform.is('cordova')){
-        // token =await this.firebaseNative.getToken();
        token="web";
        console.log(token);
       }
       if(this.platform.is('android')){
        token =await this.firebaseNative.getToken();
-          //token='android';
       }
-        
-        
-        
 
-        
-
+      //We need to save it on our database so call responsible function
         return this.saveTokenToFirestore(token);
   }
 
 private saveTokenToFirestore(token){
 if(!token) return;
 
+//save the device's token in a new collection called devices 
 const clientsRef= this.afs.collection('devices');
 const docData ={
   token
@@ -53,6 +48,7 @@ const docData ={
 
 return clientsRef.doc(token).set(docData);
 }
+
 
 listenToNotifications(){
   return this.firebaseNative.onNotificationOpen();
