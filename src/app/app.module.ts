@@ -16,18 +16,7 @@ import { Firebase } from '@ionic-native/firebase';
 
 // Initialize Firebase
 var firebase = {
-  // apiKey: "AIzaSyAyQm9eGas86gwusWjDe_nVZEIQ0BaMveE",
-  // authDomain: "trial-2d12e.firebaseapp.com",
-  // databaseURL: "https://trial-2d12e.firebaseio.com",
-  // projectId: "trial-2d12e",
-  // storageBucket: "trial-2d12e.appspot.com",
-  // messagingSenderId: "753010353270"
- apiKey: "AIzaSyCEzA5WIt5dbqRqNIMjOsl9WbuEzsz7B0Y",
- authDomain: "fiery-heat-9860.firebaseapp.com",
- databaseURL: "https://fiery-heat-9860.firebaseio.com",
- projectId: "fiery-heat-9860",
- storageBucket: "fiery-heat-9860.appspot.com",
- messagingSenderId: "959812971783"
+  //the configurations are removed for security reasons
  };
 @NgModule({
   declarations: [
